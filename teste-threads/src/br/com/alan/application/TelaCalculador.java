@@ -1,4 +1,4 @@
-package br.com.alura.application;
+package br.com.alan.application;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;

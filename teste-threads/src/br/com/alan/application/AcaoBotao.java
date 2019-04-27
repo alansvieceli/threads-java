@@ -1,5 +1,5 @@
 
-package br.com.alura.application;
+package br.com.alan.application;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,7 +8,7 @@ import java.math.BigInteger;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import br.com.alura.threads.TarefaMultiplicacao;
+import br.com.alan.threads.TarefaMultiplicacao;
 
 public class AcaoBotao implements ActionListener {
 

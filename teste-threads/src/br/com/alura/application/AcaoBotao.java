@@ -1,5 +1,5 @@
 
-package br.com.alura.threads;
+package br.com.alura.application;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,6 +7,8 @@ import java.math.BigInteger;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import br.com.alura.threads.TarefaMultiplicacao;
 
 public class AcaoBotao implements ActionListener {
 
@@ -23,17 +25,11 @@ public class AcaoBotao implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		long valor1 = Long.parseLong(primeiro.getText());
-		long valor2 = Long.parseLong(segundo.getText());
-		BigInteger calculo = new BigInteger("0");
+		Runnable tarefa = new TarefaMultiplicacao(primeiro, segundo, resultado);
+		Thread threadCalculo = new Thread(tarefa, "thread-calculadora");
 		
-		for (int i = 0; i < valor1; i++) {
-			for (int j = 0; j < valor2; j++) {
-				calculo = calculo.add(new BigInteger("1"));
-			}
-		}
+		threadCalculo.start();
 
-		resultado.setText(calculo.toString());
 	}
 
 }

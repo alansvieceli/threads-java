@@ -4,6 +4,10 @@ public class Lista {
 
 	private String[] elementos = new String[1000];
 	private int indice = 0;
+	
+	public boolean estaCheia() {
+        return this.indice == this.tamanho();
+    }
 
 	public synchronized void adicionaElementos(String elemento) {
 		this.elementos[indice] = elemento;
@@ -19,7 +23,7 @@ public class Lista {
 			e.printStackTrace();
 		}
 
-		if (this.indice == this.tamanho()) {
+		if (estaCheia()) {
 			System.out.println("lista tá cheia, notificando");
 			this.notify();
 		}

@@ -14,6 +14,14 @@ public class Banheiro {
 
 	}
 
+	private void UsandoBanheiro(int tempo) {
+		try {
+			Thread.sleep(tempo);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public void limpa() {
 		String nome = Thread.currentThread().getName();
 
@@ -53,17 +61,15 @@ public class Banheiro {
 
 			System.out.println(nome + " >> entrando no banheiro");
 
-			if (this.estaSujo) {
+			while (this.estaSujo) {
 				esperaLaFora(nome);
 			}
 
 			System.out.println(nome + " >> fazendo coisa rapida");
 
-			try {
-				Thread.sleep(8000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			UsandoBanheiro(5000);
+			
+			this.estaSujo = true;
 
 			System.out.println(nome + " >> dando descarga");
 			System.out.println(nome + " >> lavando a mao");
@@ -82,17 +88,15 @@ public class Banheiro {
 
 			System.out.println(nome + " >> entrando no banheiro");
 
-			if (this.estaSujo) {
+			while (this.estaSujo) {
 				esperaLaFora(nome);
 			}
 
 			System.out.println(nome + " >> fazendo coisa demorada");
 
-			try {
-				Thread.sleep(15000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			UsandoBanheiro(12000);
+
+			this.estaSujo = true;
 
 			System.out.println(nome + " >> dando descarga");
 			System.out.println(nome + " >> lavando a mao");
@@ -100,4 +104,5 @@ public class Banheiro {
 
 		}
 	}
+
 }

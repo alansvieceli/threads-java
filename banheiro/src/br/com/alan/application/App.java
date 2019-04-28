@@ -15,6 +15,12 @@ public class App {
 		
 		Thread limpeza = new Thread(new TarefaLimpeza(banheiro), "Limpeza");
 		limpeza.setDaemon(true); //encerra quando todoas dependencias sao encerradas
+		/*
+		 * Threads daemon são como prestadores de serviços para outras threads. Elas são usadas para dar apoio à tarefas e só 
+		 * são necessárias rodar quando as threads "normais" ainda estão sendo executadas. Uma thread daemon não impede a JVM de terminar
+		 *  desde que não existem mais threads principais em execução. Um exemplo de uma thread daemon é o coletor de lixo da 
+		 *  JVM (Garbage Collector) ou a nossa limpeza do banheiro :)
+		 */
 		
         Thread convidado1 = new Thread(new TarefaNumero1(banheiro), "João");
         Thread convidado2 = new Thread(new TarefaNumero2(banheiro), "Pedro");

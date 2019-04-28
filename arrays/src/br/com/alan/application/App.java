@@ -2,6 +2,7 @@ package br.com.alan.application;
 
 import br.com.alan.listas.Lista;
 import br.com.alan.runnable.TarefaAdicionarElemento;
+import br.com.alan.runnable.TarefaImprimir;
 
 public class App {
 
@@ -12,11 +13,7 @@ public class App {
 			new Thread(new TarefaAdicionarElemento(lista, i)).start();
 		}
 		
-		Thread.sleep(2000);
-
-        for(int i = 0; i <lista.tamanho(); i++) {
-            System.out.println(i + " - " + lista.pegaElemento(i));
-        }
+		new Thread(new TarefaImprimir(lista)).start();
 
 	}
 

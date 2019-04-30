@@ -1,6 +1,7 @@
 package br.com.alan.servidor.runnable;
 
 import java.net.Socket;
+import java.util.Scanner;
 
 public class TarefaDistribuir implements Runnable {
 
@@ -16,12 +17,20 @@ public class TarefaDistribuir implements Runnable {
 		System.out.println("Distribuindo tarefas: " + socket);
 
 		try {
-			Thread.sleep(15000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+			Scanner scanner = new Scanner(socket.getInputStream());
+			try {
+				while (scanner.hasNextLine()) {
+					String linha = scanner.nextLine();
+					System.out.println(linha);
+				}
+
+			} finally {
+				scanner.close();
+			}
+
+		} catch (Exception e) {
+			throw new RuntimeException(e);
 		}
-		
-		System.out.println("Acabou");
 
 	}
 

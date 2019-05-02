@@ -5,7 +5,7 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import br.com.alan.servidor.runnable.TarefaDistribuir;
+import br.com.alan.servidor.runnable.TarefasDistribuir;
 
 public class ServidorTarefas {
 	
@@ -18,7 +18,7 @@ public class ServidorTarefas {
 		
 		while (true) {
 			Socket socket = servidor.accept();
-			threadPool.execute(new TarefaDistribuir(socket));
+			threadPool.execute(new TarefasDistribuir(socket));
 		
 			
 		}

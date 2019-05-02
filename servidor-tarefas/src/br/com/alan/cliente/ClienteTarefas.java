@@ -77,8 +77,11 @@ public class ClienteTarefas {
 			try {
 
 				while (teclado.hasNextLine()) {
+					
+					//pegando o que foi digitado no console
 					String linha = teclado.nextLine();
 
+					//se for vazio não vamos enviar nada para o servidor
 					if (linha.trim().equals("")) {
 						break;
 					}

@@ -11,6 +11,8 @@ public class ServidorTarefas {
 	
 	public static void main(String[] args) throws Exception {
 		System.out.println("----- Iniciando Servidor ------");		
+		
+		@SuppressWarnings("resource")
 		ServerSocket servidor = new ServerSocket(3232);		
 		
 		//ExecutorService threadPool = Executors.newFixedThreadPool(2); // <- pool de  conexões de threads

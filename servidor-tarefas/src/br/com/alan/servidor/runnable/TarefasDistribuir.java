@@ -45,8 +45,6 @@ public class TarefasDistribuir implements Runnable {
 								break;
 							}
 						}
-
-						System.out.println(linha);
 					}
 
 					System.out.println("saindo do servidor");

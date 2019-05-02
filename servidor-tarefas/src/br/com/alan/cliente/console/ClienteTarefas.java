@@ -1,4 +1,4 @@
-package br.com.alan.cliente;
+package br.com.alan.cliente.console;
 
 import java.io.IOException;
 import java.io.PrintStream;

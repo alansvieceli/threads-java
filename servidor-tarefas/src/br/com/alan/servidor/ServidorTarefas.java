@@ -14,7 +14,7 @@ public class ServidorTarefas {
 		ServerSocket servidor = new ServerSocket(3232);		
 		
 		//ExecutorService threadPool = Executors.newFixedThreadPool(2); // <- pool de  conexões de threads
-		//ExecutorService threadPool = Executors.newCachedThreadPool(); // cresce e diminui dinamicamente
+		ExecutorService threadPool = Executors.newCachedThreadPool(); // cresce e diminui dinamicamente
 		
 		while (true) {
 			Socket socket = servidor.accept();

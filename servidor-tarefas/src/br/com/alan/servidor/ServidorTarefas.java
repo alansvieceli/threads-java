@@ -33,8 +33,8 @@ public class ServidorTarefas {
 		System.out.println("----- Iniciando Servidor ------");
 		this.estaRodando = new AtomicBoolean(true);
 		this.servidor = new ServerSocket(3232);
-		// ExecutorService threadPool = Executors.newFixedThreadPool(2); // <- pool de
-		this.threadPool = Executors.newCachedThreadPool(); // cresce e diminui dinamicamente
+		 this.threadPool = Executors.newFixedThreadPool(4); // <- pool de
+		//this.threadPool = Executors.newCachedThreadPool(); // cresce e diminui dinamicamente
 	}
 
 	public void parar() throws IOException {
@@ -47,7 +47,7 @@ public class ServidorTarefas {
 		while (this.estaRodando.get()) {
 			try {
 			Socket socket = servidor.accept();
-			threadPool.execute(new TarefasDistribuir(socket, this));
+			threadPool.execute(new TarefasDistribuir(this.threadPool, socket, this));
 			} catch (SocketException e) {
 												
 			}

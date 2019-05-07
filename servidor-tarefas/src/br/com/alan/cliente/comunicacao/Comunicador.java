@@ -5,7 +5,7 @@ import java.io.PrintStream;
 import java.net.Socket;
 import java.util.Scanner;
 
-import br.com.alan.cliente.log.Log;
+import br.com.alan.utils.log.Log;
 
 public class Comunicador {
 

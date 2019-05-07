@@ -4,12 +4,16 @@ import java.io.PrintStream;
 import java.net.Socket;
 import java.util.Scanner;
 
+import br.com.alan.servidor.ServidorTarefas;
+
 public class TarefasDistribuir implements Runnable {
 
 	private Socket socket;
+	private ServidorTarefas servidor;
 
-	public TarefasDistribuir(Socket socket) {
+	public TarefasDistribuir(Socket socket, ServidorTarefas servidor) {
 		this.socket = socket;
+		this.servidor = servidor;
 	}
 
 	@Override
@@ -38,6 +42,11 @@ public class TarefasDistribuir implements Runnable {
 							}
 							case "c3": {
 								saidaCliente.println("Confirmação do comando c3");
+								break;
+							}
+							case "fim": {
+								saidaCliente.println("Desligando servidor");
+								this.servidor.parar();
 								break;
 							}
 							default: {

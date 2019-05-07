@@ -20,7 +20,7 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import br.com.alan.cliente.comunicacao.Comunicador;
-import br.com.alan.cliente.log.Log;
+import br.com.alan.utils.log.Log;
 
 public class App {
 
@@ -64,8 +64,9 @@ public class App {
 		frame.setTitle("Tarefas - Cliente");
 		frame.setLocationRelativeTo(null);
 
+		/*
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-
+		
 		frame.addWindowListener(new WindowAdapter() {
 
 			@Override
@@ -76,9 +77,10 @@ public class App {
 
 			@Override
 			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-				close();
+				//close();
 			}
 		});
+		*/
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Comandos", TitledBorder.LEADING,
@@ -143,7 +145,11 @@ public class App {
 		JButton btnTerminarServidor = new JButton("terminar servidor");
 		btnTerminarServidor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				close();
+				try {
+					comunicador.enviandoDadosParaServidor("fim");
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnTerminarServidor.setBounds(547, 21, 169, 169);
@@ -152,6 +158,7 @@ public class App {
 		frame.getContentPane().setLayout(groupLayout);
 	}
 
+	/*
 	private void close() {
 		if (JOptionPane.showConfirmDialog(frame, "Quer Realmente fechar essa bagaça???", "Fechar aplicação?",
 				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
@@ -160,5 +167,6 @@ public class App {
 		}
 
 	}
+	*/
 
 }

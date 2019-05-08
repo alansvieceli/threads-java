@@ -33,7 +33,7 @@ public class ServidorTarefas {
 		System.out.println("----- Iniciando Servidor ------");
 		this.estaRodando = new AtomicBoolean(true);
 		this.servidor = new ServerSocket(3232);
-		 this.threadPool = Executors.newFixedThreadPool(4); // <- pool de
+		 this.threadPool = Executors.newFixedThreadPool(6, new FabricaThreads()); // <- pool de
 		//this.threadPool = Executors.newCachedThreadPool(); // cresce e diminui dinamicamente
 	}
 

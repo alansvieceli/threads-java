@@ -59,28 +59,23 @@ public class App {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 761, 506);
+		frame.setBounds(100, 100, 944, 506);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Tarefas - Cliente");
 		frame.setLocationRelativeTo(null);
 
 		/*
-		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		
-		frame.addWindowListener(new WindowAdapter() {
-
-			@Override
-			public void windowClosed(WindowEvent e) {
-				System.out.println("jdialog window closed event received");
-				super.windowClosed(e);
-			}
-
-			@Override
-			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-				//close();
-			}
-		});
-		*/
+		 * frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		 * 
+		 * frame.addWindowListener(new WindowAdapter() {
+		 * 
+		 * @Override public void windowClosed(WindowEvent e) {
+		 * System.out.println("jdialog window closed event received");
+		 * super.windowClosed(e); }
+		 * 
+		 * @Override public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+		 * //close(); } });
+		 */
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Comandos", TitledBorder.LEADING,
@@ -152,21 +147,22 @@ public class App {
 				}
 			}
 		});
-		btnTerminarServidor.setBounds(547, 21, 169, 169);
+		btnTerminarServidor.setBounds(726, 21, 169, 169);
 		panel.add(btnTerminarServidor);
+
+		JButton btnC4 = new JButton("c4");
+		btnC4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					comunicador.enviandoDadosParaServidor("c4");
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnC4.setBounds(547, 21, 169, 169);
+		panel.add(btnC4);
 
 		frame.getContentPane().setLayout(groupLayout);
 	}
-
-	/*
-	private void close() {
-		if (JOptionPane.showConfirmDialog(frame, "Quer Realmente fechar essa bagaça???", "Fechar aplicação?",
-				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
-			comunicador.fechar();
-			System.exit(0);
-		}
-
-	}
-	*/
-
 }

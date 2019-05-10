@@ -3,6 +3,7 @@ package br.com.alan.servidor.runnable;
 import java.io.PrintStream;
 import java.net.Socket;
 import java.util.Scanner;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
@@ -16,9 +17,11 @@ public class TarefasDistribuir implements Runnable {
 	private Socket socket;
 	private ServidorTarefas servidor;
 	private ExecutorService threadPool;
+	private BlockingQueue<String> filaComandos;
 
-	public TarefasDistribuir(ExecutorService threadPool, Socket socket, ServidorTarefas servidor) {
+	public TarefasDistribuir(ExecutorService threadPool, BlockingQueue<String> filaComandos, Socket socket, ServidorTarefas servidor) {
 		this.threadPool = threadPool;
+		this.filaComandos = filaComandos;
 		this.socket = socket;
 		this.servidor = servidor;
 	}
@@ -51,8 +54,7 @@ public class TarefasDistribuir implements Runnable {
 				                ComandoC1AcessaBancoDeDados c1 = new ComandoC1AcessaBancoDeDados(saidaCliente);
 				                
 				                Future<String> ftC2 = this.threadPool.submit(c2);
-				                Future<String> ftC1 = this.threadPool.submit(c1);
-											                
+				                Future<String> ftC1 = this.threadPool.submit(c1);											                
 				                
 				                this.threadPool.submit(new JuntaResultadosFutureWSFutureBanco(ftC2, ftC1, saidaCliente));
 				                
@@ -64,6 +66,11 @@ public class TarefasDistribuir implements Runnable {
 				                this.threadPool.execute(c3);
 								break;
 							}
+							case "c4": {
+							    this.filaComandos.put(linha); //lembrando, bloqueia se tiver cheia
+							    saidaCliente.println("Comando c4 adicionado na fila");
+								break;
+							}							
 							case "fim": {
 								saidaCliente.println("Desligando servidor");
 								this.servidor.parar();
